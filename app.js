@@ -1,34 +1,26 @@
-let sendButton = document.getElementById('send');
-let resetButton = document.getElementById('reset');
-let form = document.getElementById('form');
+$("form").submit(function (e) {
+    e.preventDefault()
+});
 
-
-form.addEventListener('submit', function(e){
-    e.preventDefault();
-})
-
-resetButton.addEventListener('click', function(){
-    let name = document.getElementById('name');
-    let email = document.getElementById('email');
-    let message = document.getElementById('message');
-
-    name.value = '';
-    email.value = '';
-    message.value = '';
-})
-
-sendButton.addEventListener('click', function(e){
-    let name = document.getElementById('name');
-    let email = document.getElementById('email');
-    let message = document.getElementById('message');
-
-    name = name.value;
-    localStorage.setItem('name', name);
+$("#send").click(function (e) {
+    let name=$("#name")[0].name
+    let nameValue=$("#name").val()
     
-    email = email.value;
-    localStorage.setItem('email', email);
-
-    message = message.value;
-    localStorage.setItem('message', message);
+    let email=$("#email")[0].name
+    let emailValue=$("#email").val()
     
-})
+    let message=$("#message")[0].name
+    let messageValue=$("#message").val()
+
+    window.localStorage.setItem(`${name}`, `${nameValue}`);
+    window.localStorage.setItem(`${email}`, `${emailValue}`);
+    window.localStorage.setItem(`${message}`, `${messageValue}`);
+});
+
+$("#reset").click(function (e) {
+    $("#name").val(" ")
+    $("#email").val(" ")
+    $("#message").val(" ")
+    
+    window.localStorage.clear();
+});
